@@ -6,7 +6,7 @@
 #include <ScintillaStructures.h>
 #include <ui_unix.h>
 #include <ScintillaWidget.h>
-#include "ui_scintilla.h"
+#include <ui_scintilla.h>
 
 #define FOURCC(a, b, c, d) ((a) << 24 | ((b) << 16) | ((c) << 8) | (d))
 
