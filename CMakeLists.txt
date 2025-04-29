@@ -22,7 +22,6 @@ add_library(libui_scintilla STATIC ${SCINTILLA_SRC})
 target_include_directories(libui_scintilla
 	PUBLIC ${PROJECT_SOURCE_DIR}/scintilla/include ${PROJECT_SOURCE_DIR}/include
 	PRIVATE ${PROJECT_SOURCE_DIR}/scintilla/src ${PROJECT_SOURCE_DIR}/scintilla/win32
-#	PRIVATE $<TARGET_PROPERTY:LibUI::LibUI,INTERFACE_INCLUDE_DIRECTORIES>
 	PRIVATE ${libui_source_dir}
 )
 target_link_libraries(libui_scintilla PRIVATE LibUI::LibUI)
