@@ -48,7 +48,7 @@ uintptr_t uiScintillaSendMessage(uiScintilla *s, uint32_t code, uintptr_t w, uin
 	return SendMessage(s->hwnd, code, w, l);
 }
 
-void uiScintillaGetRange(uiScintilla *s, int start, int end, char *text) {
+void uiScintillaGetRange(uiScintilla *s, unsigned int start, unsigned int end, char *text) {
 	TEXTRANGE tr;
 	tr.chrg.cpMin = start;
 	tr.chrg.cpMax = end;
@@ -56,20 +56,20 @@ void uiScintillaGetRange(uiScintilla *s, int start, int end, char *text) {
 	SendMessage(s->hwnd, SCI_GETTEXTRANGE, 0, reinterpret_cast<LPARAM>(&tr));
 }
 
-void uiScintillaSetText(uiScintilla *s, const char *text) {
-	SendMessage(s->hwnd, SCI_SETTEXT, strlen(text), reinterpret_cast<LPARAM>(text));
+void uiScintillaSetText(uiScintilla *s, const char *text, unsigned int len) {
+	SendMessage(s->hwnd, SCI_SETTEXT, len, reinterpret_cast<LPARAM>(text));
 }
 
 void uiScintillaAppend(uiScintilla *s, const char *text) {
 	SendMessage(s->hwnd, SCI_APPENDTEXT, strlen(text), reinterpret_cast<LPARAM>(text));
 }
 
-int uiScintillaGetLength(uiScintilla *s) {
+unsigned int uiScintillaGetLength(uiScintilla *s) {
 	return SendMessage(s->hwnd, SCI_GETLENGTH, 0, 0);
 }
 
 char *uiScintillaText(uiScintilla *s) {
-	int len = uiScintillaGetLength(s);
+	unsigned int len = uiScintillaGetLength(s);
 	char *text = (char *)malloc((size_t)len);
 	uiScintillaGetRange(s, 0, len, text);
 	return text;
